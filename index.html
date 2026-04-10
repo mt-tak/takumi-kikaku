@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="採用でも派遣でもない、スポットで使える組み込みの専門家。ハードウェアスタートアップのPoC・試作支援、技術顧問、FPGA・基板設計まで。">
+  <title>匠企画 | 組み込みシステム専門家</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; background: #0a0c10; color: #e2e8f0; line-height: 1.7; }
+    a { color: #60a5fa; text-decoration: none; }
+
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    nav { border-bottom: 1px solid #1e2535; padding: 18px 0; position: sticky; top: 0; background: #0a0c10; z-index: 100; }
+    nav .inner { max-width: 860px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 15px; font-weight: 500; letter-spacing: 0.08em; color: #94a3b8; }
+    .logo span { color: #60a5fa; }
+    nav a.cta-small { font-size: 13px; border: 1px solid #334155; padding: 6px 16px; border-radius: 6px; color: #94a3b8; transition: border-color 0.2s, color 0.2s; }
+    nav a.cta-small:hover { border-color: #60a5fa; color: #60a5fa; }
+
+    /* HERO */
+    .hero { padding: 100px 0 80px; border-bottom: 1px solid #1e2535; }
+    .tag { display: inline-block; font-size: 11px; letter-spacing: 0.12em; color: #60a5fa; border: 1px solid #1e3a5f; padding: 4px 12px; border-radius: 4px; margin-bottom: 28px; text-transform: uppercase; }
+    .hero h1 { font-size: clamp(26px, 4vw, 40px); font-weight: 500; line-height: 1.45; color: #f1f5f9; margin-bottom: 20px; }
+    .hero h1 em { font-style: normal; color: #60a5fa; }
+    .hero p { font-size: 16px; color: #94a3b8; max-width: 560px; margin-bottom: 40px; }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary { display: inline-block; background: #1d4ed8; color: #fff; padding: 12px 28px; border-radius: 6px; font-size: 14px; font-weight: 500; transition: background 0.2s; }
+    .btn-primary:hover { background: #2563eb; color: #fff; }
+    .btn-ghost { display: inline-block; border: 1px solid #334155; color: #94a3b8; padding: 12px 28px; border-radius: 6px; font-size: 14px; transition: border-color 0.2s, color 0.2s; }
+    .btn-ghost:hover { border-color: #60a5fa; color: #60a5fa; }
+
+    /* SECTIONS */
+    section { padding: 72px 0; border-bottom: 1px solid #1e2535; }
+    .section-label { font-size: 11px; letter-spacing: 0.14em; color: #60a5fa; text-transform: uppercase; margin-bottom: 12px; }
+    .section-title { font-size: clamp(20px, 3vw, 26px); font-weight: 500; color: #f1f5f9; margin-bottom: 16px; }
+    .section-body { font-size: 15px; color: #94a3b8; max-width: 600px; line-height: 1.8; }
+
+    /* PAIN POINTS */
+    .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 32px; }
+    .pain-card { border: 1px solid #1e2535; border-radius: 8px; padding: 20px; background: #0d1117; }
+    .pain-card .num { font-size: 11px; color: #334155; font-family: 'Courier New', monospace; margin-bottom: 10px; }
+    .pain-card p { font-size: 14px; color: #94a3b8; line-height: 1.65; }
+
+    /* SERVICE */
+    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 32px; }
+    .service-card { border: 1px solid #1e2535; border-radius: 8px; padding: 24px; background: #0d1117; }
+    .service-card .icon { font-size: 16px; margin-bottom: 12px; }
+    .service-card h3 { font-size: 14px; font-weight: 500; color: #e2e8f0; margin-bottom: 8px; }
+    .service-card p { font-size: 13px; color: #64748b; line-height: 1.65; }
+
+    /* PROFILE */
+    .profile-block { margin-top: 32px; border: 1px solid #1e2535; border-radius: 8px; padding: 28px; background: #0d1117; }
+    .profile-name { font-size: 18px; font-weight: 500; color: #f1f5f9; margin-bottom: 4px; }
+    .profile-title { font-size: 13px; color: #60a5fa; margin-bottom: 20px; }
+    .career-list { list-style: none; }
+    .career-list li { font-size: 13px; color: #64748b; padding: 7px 0; border-bottom: 1px solid #161c28; display: flex; gap: 12px; align-items: flex-start; }
+    .career-list li:last-child { border-bottom: none; }
+    .career-list .domain { color: #475569; font-family: 'Courier New', monospace; min-width: 140px; font-size: 12px; flex-shrink: 0; }
+
+    /* CTA */
+    .cta-section { padding: 80px 0; text-align: center; }
+    .cta-section .section-label { text-align: center; }
+    .cta-section h2 { font-size: clamp(20px, 3vw, 28px); font-weight: 500; color: #f1f5f9; margin-bottom: 12px; }
+    .cta-section p { font-size: 15px; color: #64748b; margin-bottom: 32px; }
+
+    /* FOOTER */
+    footer { padding: 32px 0; border-top: 1px solid #1e2535; }
+    footer .inner { max-width: 860px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    footer p { font-size: 12px; color: #334155; }
+    footer a { font-size: 12px; color: #475569; }
+    footer a:hover { color: #60a5fa; }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .hero { padding: 64px 0 56px; }
+      section { padding: 52px 0; }
+      .career-list .domain { min-width: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <div class="logo"><span>匠</span>企画</div>
+    <a class="cta-small" href="https://forms.gle/TQob9wMdznNM3cKX7" target="_blank" rel="noopener">お問い合わせ</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="container">
+    <div class="tag">Embedded Systems Expert</div>
+    <h1>採用でも派遣でもない、<br><em>スポットで使える</em>組み込みの専門家。</h1>
+    <p>ハードウェアスタートアップの「とりあえず動かしたい」を、20年超の現場経験で最短距離で解決します。</p>
+    <div class="hero-cta">
+      <a class="btn-primary" href="https://forms.gle/TQob9wMdznNM3cKX7" target="_blank" rel="noopener">無料相談を申し込む</a>
+      <a class="btn-ghost" href="https://note.com/sys_taku" target="_blank" rel="noopener">技術記事を読む</a>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="section-label">Problem</div>
+    <div class="section-title">こんな課題、抱えていませんか？</div>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="num">// 01</div>
+        <p>正社員を採用するほどではないが、組み込みエンジニアがいなくて開発が止まっている</p>
+      </div>
+      <div class="pain-card">
+        <div class="num">// 02</div>
+        <p>PoCを急ぎで動かしたいが、社内に適任者がいない。外注すると仕様が伝わらない</p>
+      </div>
+      <div class="pain-card">
+        <div class="num">// 03</div>
+        <p>派遣は長期前提で使いにくい。でも単発で動いてくれる専門家の探し方がわからない</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">Service</div>
+    <div class="section-title">提供できること</div>
+    <p class="section-body">航空宇宙・医療・自動車・食品ロボティクスまで、幅広いドメインで実績のある組み込みエンジニアが、必要な期間だけ稼働します。</p>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="icon">⬡</div>
+        <h3>PoC・試作支援</h3>
+        <p>MCU選定からファームウェア実装まで。Zephyr / FreeRTOS / ベアメタル対応。</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">⬡</div>
+        <h3>技術顧問・レビュー</h3>
+        <p>設計レビュー、アーキテクチャ相談、CTO向けの技術判断サポート。</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">⬡</div>
+        <h3>ハードウェア設計</h3>
+        <p>KiCad / Altiumによる回路・基板設計。EMC・電源設計の経験あり。</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">⬡</div>
+        <h3>FPGA・SoC開発</h3>
+        <p>Xilinx / Intel FPGA、Zynq SoC、VHDL / HLS対応。宇宙機搭載実績。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">Profile</div>
+    <div class="section-title">エンジニアについて</div>
+    <div class="profile-block">
+      <div class="profile-name">小山</div>
+      <div class="profile-title">Freelance Embedded Systems Engineer / sys_taku</div>
+      <ul class="career-list">
+        <li><span class="domain">産業機器</span><span>サーボシステム 組み込みソフトウェア開発</span></li>
+        <li><span class="domain">モータースポーツ</span><span>レーシングECU開発 / EV・HEV制御（国際レース参戦実績）</span></li>
+        <li><span class="domain">自動車</span><span>安全システム 組み込みソフトウェア開発</span></li>
+        <li><span class="domain">医療機器</span><span>FPGA設計・開発</span></li>
+        <li><span class="domain">宇宙・航空</span><span>人工衛星 搭載コンピュータ開発</span></li>
+        <li><span class="domain">食品ロボティクス</span><span>PM / 組み込みソフトウェア開発</span></li>
+        <li><span class="domain">物流ロボティクス</span><span>組み込みソフトウェア開発</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <div class="container">
+    <div class="section-label">Contact</div>
+    <h2>まずは話を聞かせてください。</h2>
+    <p>課題の整理から一緒に行います。費用や進め方は相談の上で決めます。</p>
+    <a class="btn-primary" href="https://forms.gle/TQob9wMdznNM3cKX7" target="_blank" rel="noopener">お問い合わせフォームへ</a>
+  </div>
+</div>
+
+<footer>
+  <div class="inner">
+    <p>© 2025 匠企画 / 小山</p>
+    <a href="https://note.com/sys_taku" target="_blank" rel="noopener">note.com/sys_taku</a>
+  </div>
+</footer>
+
+</body>
+</html>
