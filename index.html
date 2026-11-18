@@ -3,82 +3,148 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="採用でも派遣でもない、スポットで使える組み込みの専門家。ハードウェアスタートアップのPoC・試作支援、技術顧問、FPGA・基板設計まで。">
-  <title>匠企画 | 組み込みシステム開発のことなら</title>
+  <meta name="description" content="匠企画は組み込み開発を軸に、ハードウェア・ソフトウェア・システムを要件定義からテストまで担当します。開発支援、PoC・試作支援、技術顧問・設計レビューにも対応します。">
+  <title>匠企画｜組み込み開発</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* Tokens — Takumi Kikaku design system */
+    :root {
+      --paper: #ffffff;
+      --surface-200: #f3f5f8;
+      --ink: #1c1f23;
+      --ink-muted: #5b6168;
+      --hairline: #dde1e6;
+      --blue: #1a6ee0;
+      --blue-tint: #e6f0fd;
+      --navy: #16407e;
+      --navy-ink: #f4f7fb;
+      --navy-dot: #9db8e0;
+
+      --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-4: 16px;
+      --space-8: 32px;
+      --radius-0: 0;
+      --radius-sm: 2px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #141619;
+        --surface-200: #1d2024;
+        --ink: #eceae4;
+        --ink-muted: #a3a8ae;
+        --hairline: #33373c;
+        --blue: #7fb0ff;
+        --blue-tint: #18233a;
+        --navy: #1f4a8a;
+      }
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; background: #0a0c10; color: #e2e8f0; line-height: 1.7; }
-    a { color: #60a5fa; text-decoration: none; }
+    body { font-family: var(--sans); font-size: 15px; line-height: 26px; background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 
-    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    .container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+    /* Type styles */
+    .label { font-family: var(--mono); font-size: 11px; line-height: 16px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); }
+    .data { font-family: var(--mono); font-size: 13px; line-height: 20px; }
+    .heading { font-size: 22px; line-height: 32px; font-weight: 700; }
+    .caption { font-size: 12px; line-height: 18px; color: var(--ink-muted); }
 
     /* NAV */
-    nav { border-bottom: 1px solid #1e2535; padding: 18px 0; position: sticky; top: 0; background: #0a0c10; z-index: 100; }
-    nav .inner { max-width: 860px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 15px; font-weight: 500; letter-spacing: 0.08em; color: #94a3b8; }
-    .logo span { color: #60a5fa; }
-    nav a.cta-small { font-size: 13px; border: 1px solid #334155; padding: 6px 16px; border-radius: 6px; color: #94a3b8; transition: border-color 0.2s, color 0.2s; }
-    nav a.cta-small:hover { border-color: #60a5fa; color: #60a5fa; }
+    nav { position: sticky; top: 0; z-index: 10; background: var(--paper); border-bottom: 1px solid var(--hairline); }
+    nav .inner { max-width: 880px; margin: 0 auto; padding: var(--space-4) 24px; display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); }
+    .wordmark { display: flex; align-items: baseline; gap: 12px; color: var(--ink); }
+    .wordmark:hover { text-decoration: none; }
+    .wordmark strong { font-size: 18px; line-height: 24px; font-weight: 700; letter-spacing: 0.04em; }
+    nav .links { display: flex; gap: 24px; align-items: center; }
+    nav .links a { font-size: 13px; color: var(--ink-muted); }
+    nav .links a:hover { color: var(--ink); }
+
+    /* Buttons */
+    .btn { display: inline-block; font-size: 14px; line-height: 20px; font-weight: 700; padding: 12px 28px; border-radius: var(--radius-0); border: 1px solid transparent; }
+    .btn:hover { text-decoration: none; }
+    .btn-primary { background: var(--blue); color: #ffffff; }
+    .btn-primary:hover { filter: brightness(1.08); }
+    @media (prefers-color-scheme: dark) { .btn-primary { color: #141619; } }
+    .btn-ghost { border-color: var(--hairline); color: var(--ink); }
+    .btn-ghost:hover { border-color: var(--ink-muted); }
 
     /* HERO */
-    .hero { padding: 100px 0 80px; border-bottom: 1px solid #1e2535; }
-    .tag { display: inline-block; font-size: 11px; letter-spacing: 0.12em; color: #60a5fa; border: 1px solid #1e3a5f; padding: 4px 12px; border-radius: 4px; margin-bottom: 28px; text-transform: uppercase; }
-    .hero h1 { font-size: clamp(26px, 4vw, 40px); font-weight: 500; line-height: 1.45; color: #f1f5f9; margin-bottom: 20px; }
-    .hero h1 em { font-style: normal; color: #60a5fa; }
-    .hero p { font-size: 16px; color: #94a3b8; max-width: 560px; margin-bottom: 40px; }
+    .hero { position: relative; overflow: hidden; padding: 112px 0 96px; background: var(--navy); color: var(--navy-ink); }
+    .hero::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(var(--navy-dot) 1.2px, transparent 1.4px); background-size: 16px 16px; opacity: 0.35; -webkit-mask-image: linear-gradient(105deg, transparent 35%, #000 85%); mask-image: linear-gradient(105deg, transparent 35%, #000 85%); }
+    .hero .container { position: relative; }
+    .hero .label { margin-bottom: 24px; color: var(--navy-dot); }
+    .hero h1 { font-size: clamp(28px, 4.6vw, 44px); line-height: 1.4; font-weight: 700; letter-spacing: 0.04em; margin-bottom: 24px; }
+    .hero p { font-size: 16px; line-height: 28px; color: var(--navy-dot); max-width: 600px; margin-bottom: 40px; }
+    .hero .btn-primary { background: var(--navy-ink); color: #16407e; }
+    .hero .btn-primary:hover { filter: brightness(0.95); }
+    .hero .btn-ghost { border-color: var(--navy-dot); color: var(--navy-ink); }
+    .hero .btn-ghost:hover { border-color: var(--navy-ink); }
     .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn-primary { display: inline-block; background: #1d4ed8; color: #fff; padding: 12px 28px; border-radius: 6px; font-size: 14px; font-weight: 500; transition: background 0.2s; }
-    .btn-primary:hover { background: #2563eb; color: #fff; }
-    .btn-ghost { display: inline-block; border: 1px solid #334155; color: #94a3b8; padding: 12px 28px; border-radius: 6px; font-size: 14px; transition: border-color 0.2s, color 0.2s; }
-    .btn-ghost:hover { border-color: #60a5fa; color: #60a5fa; }
 
     /* SECTIONS */
-    section { padding: 72px 0; border-bottom: 1px solid #1e2535; }
-    .section-label { font-size: 11px; letter-spacing: 0.14em; color: #60a5fa; text-transform: uppercase; margin-bottom: 12px; }
-    .section-title { font-size: clamp(20px, 3vw, 26px); font-weight: 500; color: #f1f5f9; margin-bottom: 16px; }
-    .section-body { font-size: 15px; color: #94a3b8; max-width: 600px; line-height: 1.8; }
+    section { padding: 80px 0; }
+    section.alt { background: var(--surface-200); }
+    section.alt .tag { background: var(--paper); }
+    section .label { margin-bottom: 12px; }
+    section .heading { margin-bottom: var(--space-4); }
+    .lead { color: var(--ink-muted); max-width: 640px; }
 
-    /* PAIN POINTS */
-    .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 32px; }
-    .pain-card { border: 1px solid #1e2535; border-radius: 8px; padding: 20px; background: #0d1117; }
-    .pain-card .num { font-size: 11px; color: #334155; font-family: 'Courier New', monospace; margin-bottom: 10px; }
-    .pain-card p { font-size: 14px; color: #94a3b8; line-height: 1.65; }
+    /* Ruled grid (hairlines, no shadows) */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: var(--space-8); border-top: 1px solid var(--hairline); border-left: 1px solid var(--hairline); }
+    .cell { padding: 24px; border-right: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+    .cell .num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; color: var(--ink-muted); margin-bottom: 12px; }
+    .cell h3 { font-size: 16px; line-height: 24px; font-weight: 700; margin-bottom: var(--space-2); }
+    .cell p { font-size: 14px; line-height: 24px; color: var(--ink-muted); }
 
-    /* SERVICE */
-    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 32px; }
-    .service-card { border: 1px solid #1e2535; border-radius: 8px; padding: 24px; background: #0d1117; }
-    .service-card .icon { font-size: 16px; margin-bottom: 12px; }
-    .service-card h3 { font-size: 14px; font-weight: 500; color: #e2e8f0; margin-bottom: 8px; }
-    .service-card p { font-size: 13px; color: #64748b; line-height: 1.65; }
+    .tags { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
+    .tag { font-size: 12px; line-height: 18px; padding: 3px 10px; border-radius: var(--radius-sm); background: var(--surface-200); color: var(--ink); }
+
+    /* Definition rows */
+    .rows { margin-top: var(--space-8); border-top: 1px solid var(--hairline); }
+    .row { display: grid; grid-template-columns: 200px 1fr; gap: var(--space-4); padding: 14px 0; border-bottom: 1px solid var(--hairline); }
+    .row dt { font-weight: 700; font-size: 14px; }
+    .row dd { font-size: 14px; color: var(--ink-muted); }
 
     /* PROFILE */
-    .profile-block { margin-top: 32px; border: 1px solid #1e2535; border-radius: 8px; padding: 28px; background: #0d1117; }
-    .profile-name { font-size: 18px; font-weight: 500; color: #f1f5f9; margin-bottom: 4px; }
-    .profile-title { font-size: 13px; color: #60a5fa; margin-bottom: 20px; }
-    .career-list { list-style: none; }
-    .career-list li { font-size: 13px; color: #64748b; padding: 7px 0; border-bottom: 1px solid #161c28; display: flex; gap: 12px; align-items: flex-start; }
-    .career-list li:last-child { border-bottom: none; }
-    .career-list .domain { color: #475569; font-family: 'Courier New', monospace; min-width: 140px; font-size: 12px; flex-shrink: 0; }
+    .profile { margin-top: var(--space-8); padding: var(--space-8); background: var(--surface-200); }
+    .profile .name { font-size: 28px; line-height: 36px; font-weight: 700; letter-spacing: 0.04em; }
+    .profile .roman { margin: var(--space-1) 0 var(--space-4); }
+    .profile .summary { color: var(--ink-muted); max-width: 620px; }
+    .profile .rows { margin-top: 24px; }
+    .profile .row dt .label { color: var(--ink-muted); }
 
-    /* CTA */
-    .cta-section { padding: 80px 0; text-align: center; }
-    .cta-section .section-label { text-align: center; }
-    .cta-section h2 { font-size: clamp(20px, 3vw, 28px); font-weight: 500; color: #f1f5f9; margin-bottom: 12px; }
-    .cta-section p { font-size: 15px; color: #64748b; margin-bottom: 32px; }
+    /* CONTACT — navy field */
+    .contact { background: var(--navy); color: var(--navy-ink); padding: 88px 0; }
+    .contact .label { color: var(--navy-dot); margin-bottom: 12px; }
+    .contact h2 { font-size: clamp(22px, 3.4vw, 28px); line-height: 1.5; font-weight: 700; margin-bottom: var(--space-4); }
+    .contact p { color: var(--navy-dot); max-width: 600px; margin-bottom: var(--space-8); }
+    .contact .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; }
+    .contact .btn { background: var(--navy-ink); color: #16407e; }
+    .contact .btn:hover { filter: brightness(0.95); }
 
     /* FOOTER */
-    footer { padding: 32px 0; border-top: 1px solid #1e2535; }
-    footer .inner { max-width: 860px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-    footer p { font-size: 12px; color: #334155; }
-    footer a { font-size: 12px; color: #475569; }
-    footer a:hover { color: #60a5fa; }
+    footer { padding: var(--space-8) 0; }
+    footer .inner { max-width: 880px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    footer .caption a { color: var(--ink-muted); }
 
-    /* RESPONSIVE */
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
+      nav .links a:not(.contact-link) { display: none; }
+      .wordmark .label { display: none; }
       .hero { padding: 64px 0 56px; }
-      section { padding: 52px 0; }
-      .career-list .domain { min-width: 100px; }
+      section { padding: 56px 0; }
+      .row { grid-template-columns: 1fr; gap: var(--space-1); }
+      .profile { padding: 24px; }
     }
   </style>
 </head>
@@ -86,112 +152,153 @@
 
 <nav>
   <div class="inner">
-    <div class="logo"><span>匠</span>企画</div>
-    <a class="cta-small" href="https://forms.gle/TQob9wMdznNM3cKX7" target="_blank" rel="noopener">お問い合わせ</a>
+    <a class="wordmark" href="#top"><strong>匠企画</strong><span class="label">Takumi Kikaku</span></a>
+    <div class="links">
+      <a href="#service">サービス</a>
+      <a href="#build">対応領域</a>
+      <a href="#profile">プロフィール</a>
+      <a class="contact-link" href="https://docs.google.com/forms/d/e/1FAIpQLSei7Qvnmuu6ScDXBRvCRmi_mVn6XjsBT-Ft87jIGCFDzvV9og/viewform?usp=header" target="_blank" rel="noopener">お問い合わせ</a>
+    </div>
   </div>
 </nav>
 
-<div class="hero">
+<header class="hero" id="top">
   <div class="container">
-    <div class="tag">Embedded Systems Expert</div>
-    <h1>採用でも派遣でもない、<br><em>スポットで使える</em>組み込み開発の専門家。</h1>
-    <p>企業様の「とりあえず動かしたい」を、20年超の現場経験で最短距離で解決します。</p>
+    <div class="label">Embedded Systems Engineering</div>
+    <h1>組み込み開発を、<br>要件定義からテストまで。</h1>
+    <p>ハードウェア・ソフトウェア・システムを一貫して担当します。25年の現場経験をもとに、必要な期間だけ、開発チームの一員として、または技術顧問として参加します。</p>
     <div class="hero-cta">
-      <a class="btn-primary" href="https://forms.gle/TQob9wMdznNM3cKX7" target="_blank" rel="noopener">無料相談を申し込む</a>
-      <a class="btn-ghost" href="https://note.com/sys_taku" target="_blank" rel="noopener">note技術記事を読む</a>
+      <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSei7Qvnmuu6ScDXBRvCRmi_mVn6XjsBT-Ft87jIGCFDzvV9og/viewform?usp=header" target="_blank" rel="noopener">無料で相談する</a>
+      <a class="btn btn-ghost" href="https://note.com/sys_taku" target="_blank" rel="noopener">noteの技術記事を読む</a>
     </div>
   </div>
-</div>
+</header>
 
-<section>
+<section class="alt">
   <div class="container">
-    <div class="section-label">Problem</div>
-    <div class="section-title">こんな課題、抱えていませんか？</div>
-    <div class="pain-grid">
-      <div class="pain-card">
-        <div class="num">// 01</div>
-        <p>正社員を採用するほどではないが、組み込みエンジニアがいなくて開発が止まっている</p>
+    <div class="label">Problem</div>
+    <h2 class="heading">こんな課題はありませんか</h2>
+    <div class="grid">
+      <div class="cell">
+        <div class="num">01</div>
+        <p>正社員を採用するほどではないが、組み込みエンジニアがいないため開発が止まっている。</p>
       </div>
-      <div class="pain-card">
-        <div class="num">// 02</div>
-        <p>PoCを急ぎで動かしたいが、社内に適任者がいない。外注すると仕様が伝わらない</p>
+      <div class="cell">
+        <div class="num">02</div>
+        <p>PoCを急いで動かしたいが、社内に適任者がいない。外注すると仕様がうまく伝わらない。</p>
       </div>
-      <div class="pain-card">
-        <div class="num">// 03</div>
-        <p>派遣は長期前提で使いにくい。でも単発で動いてくれる専門家の探し方がわからない</p>
+      <div class="cell">
+        <div class="num">03</div>
+        <p>派遣は長期前提で使いにくい。必要な期間だけ入ってくれる専門家の探し方がわからない。</p>
       </div>
     </div>
   </div>
 </section>
 
-<section>
+<section id="service">
   <div class="container">
-    <div class="section-label">Service</div>
-    <div class="section-title">提供できること</div>
-    <p class="section-body">FA・宇宙・医療・自動車・食品・物流まで、幅広い業界で実績のある組み込みエンジニアが、必要な期間だけ稼働します。</p>
-    <div class="service-grid">
-      <div class="service-card">
-        <div class="icon">⬡</div>
+    <div class="label">Service</div>
+    <h2 class="heading">提供できること</h2>
+    <p class="lead">組み込み開発を軸に、企画から試作、量産に向けた設計まで、必要な段階から参加します。</p>
+    <div class="grid">
+      <div class="cell">
+        <div class="num">01</div>
+        <h3>組み込み開発</h3>
+        <p>ハードウェア・ソフトウェア・システムの要件定義、設計、実装、テストまで一貫して対応します。</p>
+      </div>
+      <div class="cell">
+        <div class="num">02</div>
+        <h3>開発支援</h3>
+        <p>開発要員としてチームに参加し、設計・実装・評価を担当します。</p>
+      </div>
+      <div class="cell">
+        <div class="num">03</div>
         <h3>PoC・試作支援</h3>
-        <p>要件定義からハードウェアおよびソフトウエアの試作まで</p>
+        <p>アイデアを動く試作機にし、製品化に向けた課題を洗い出します。</p>
       </div>
-      <div class="service-card">
-        <div class="icon">⬡</div>
-        <h3>技術顧問・レビュー</h3>
-        <p>設計レビュー、アーキテクチャ相談、CTO向けの技術判断サポート。</p>
+      <div class="cell">
+        <div class="num">04</div>
+        <h3>技術顧問・設計レビュー</h3>
+        <p>設計レビュー、アーキテクチャの相談、技術判断のサポートなど、コンサルティングを行います。</p>
       </div>
-      <div class="service-card">
-        <div class="icon">⬡</div>
-        <h3>ハードウェア設計</h3>
-        <p>KiCad/Fusion/Altiumなどによる回路・基板設計。</p>
-      </div>
-      <div class="service-card">
-        <div class="icon">⬡</div>
-        <h3>FPGA・SoC開発</h3>
-        <p>AMD社製 FPGAおよびZynq SoCを中心とした設計</p>
-      </div>
-      <div class="service-card">
-        <div class="icon">⬡</div>
-        <h3>ソフトウェア設計</h3>
-        <p>STM32/Microchip/Renesasなど様々なマイコン用ソフトウェアの設計実装テスト。RTOS/ベアメタル対応。</p>
+      <div class="cell">
+        <div class="num">05</div>
+        <h3>企画</h3>
+        <p>製品の企画段階から参加し、仕様や構成を一緒に検討します。</p>
       </div>
     </div>
   </div>
 </section>
 
-<section>
+<section id="build" class="alt">
   <div class="container">
-    <div class="section-label">Profile</div>
-    <div class="section-title">エンジニアについて</div>
-    <div class="profile-block">
-      <div class="profile-name">小山</div>
-      <div class="profile-title">Freelance Embedded Systems Engineer / sys_taku</div>
-      <ul class="career-list">
-        <li><span class="domain">産業機器</span><span>サーボシステム 組み込みソフトウェア開発 産業用ロボットシステム設計</span></li>
-        <li><span class="domain">モータースポーツ</span><span>レーシング車両システム開発 / ECUソフトウェア開発 / EV・HEVシステム開発</span></li>
-        <li><span class="domain">自動車</span><span>安全システム 組み込みソフトウェア開発</span></li>
-        <li><span class="domain">医療機器</span><span>FPGA設計・開発</span></li>
-        <li><span class="domain">宇宙</span><span>人工衛星 搭載コンピュータ開発</span></li>
-        <li><span class="domain">食品</span><span>組み込みソフトウェアおよびハードウェア開発</span></li>
-        <li><span class="domain">物流</span><span>組み込みソフトウェアおよびハードウェア開発</span></li>
-      </ul>
+    <div class="label">Capabilities</div>
+    <h2 class="heading">対応領域</h2>
+    <div class="grid">
+      <div class="cell">
+        <div class="num">01</div>
+        <h3>IoT・エッジ機器</h3>
+        <div class="tags"><span class="tag">無線通信</span><span class="tag">クラウド連携</span></div>
+      </div>
+      <div class="cell">
+        <div class="num">02</div>
+        <h3>FA・産業機器</h3>
+        <div class="tags"><span class="tag">モーター制御</span><span class="tag">産業用通信</span></div>
+      </div>
+      <div class="cell">
+        <div class="num">03</div>
+        <h3>センサー・モーターを使う機器全般</h3>
+        <div class="tags"><span class="tag">センシング</span><span class="tag">信号処理</span><span class="tag">駆動回路</span></div>
+      </div>
+    </div>
+
+    <dl class="rows">
+      <div class="row"><dt>ファームウェア</dt><dd>各種マイコンのソフトウェア設計・実装・テスト<br>RTOS／ベアメタル対応</dd></div>
+      <div class="row"><dt>回路・基板設計</dt><dd>KiCad／Fusion／Altiumによる回路・基板設計</dd></div>
+      <div class="row"><dt>FPGA・SoC</dt><dd>AMD製FPGAおよびZynq SoCを中心とした設計</dd></div>
+      <div class="row"><dt>ハーネス・制御盤設計</dt><dd>ハーネス設計、制御盤設計</dd></div>
+      <div class="row"><dt>機構設計</dt><dd>小型筐体・治具レベルの設計</dd></div>
+      <div class="row"><dt>ロボティクス</dt><dd>ROS 2を使ったシステム開発</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="profile">
+  <div class="container">
+    <div class="label">Profile</div>
+    <h2 class="heading">エンジニアについて</h2>
+    <div class="profile">
+      <div class="name">小山</div>
+      <div class="label roman">Oyama — Embedded Systems Engineer</div>
+      <p class="summary">組み込みエンジニア歴25年。産業機器から宇宙まで、さまざまな業界で組み込みシステムの開発に携わってきました。</p>
+      <dl class="rows">
+        <div class="row"><dt>産業機器</dt><dd>サーボシステムの組み込みソフトウェア開発、産業用ロボットシステム設計</dd></div>
+        <div class="row"><dt>モータースポーツ</dt><dd>レーシング車両システム開発、ECUソフトウェア開発、EV・HEVシステム開発</dd></div>
+        <div class="row"><dt>自動車</dt><dd>安全システムの組み込みソフトウェア開発</dd></div>
+        <div class="row"><dt>医療機器</dt><dd>FPGA設計・開発</dd></div>
+        <div class="row"><dt>宇宙・航空</dt><dd>人工衛星搭載コンピュータ開発</dd></div>
+        <div class="row"><dt>物流</dt><dd>組み込みソフトウェアおよびハードウェア開発</dd></div>
+        <div class="row"><dt>食品</dt><dd>組み込みソフトウェアおよびハードウェア開発</dd></div>
+      </dl>
     </div>
   </div>
 </section>
 
-<div class="cta-section">
+<div class="contact" id="contact">
   <div class="container">
-    <div class="section-label">Contact</div>
-    <h2>まずは話を聞かせてください！</h2>
-    <p>課題の整理から一緒に行いながら、解決までサポートさせていただきます</p>
-    <a class="btn-primary" href="https://forms.gle/s4suFLMweHTXym6W8" target="_blank" rel="noopener">お問い合わせフォームへ</a>
+    <div class="label">Contact</div>
+    <h2>まずはお話を聞かせてください。</h2>
+    <p>課題の整理から一緒に行い、解決までサポートします。</p>
+    <div class="actions">
+      <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSei7Qvnmuu6ScDXBRvCRmi_mVn6XjsBT-Ft87jIGCFDzvV9og/viewform?usp=header" target="_blank" rel="noopener">お問い合わせフォームへ</a>
+    </div>
   </div>
 </div>
 
 <footer>
   <div class="inner">
-    <p>© 2025 匠企画 / 小山</p>
-    <a href="https://note.com/sys_taku" target="_blank" rel="noopener">note.com/sys_taku</a>
+    <p class="caption">© 2025 匠企画</p>
+    <p class="caption"><a href="https://note.com/sys_taku" target="_blank" rel="noopener">note.com/sys_taku</a></p>
   </div>
 </footer>
 
